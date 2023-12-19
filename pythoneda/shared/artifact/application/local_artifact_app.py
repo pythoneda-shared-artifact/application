@@ -42,7 +42,9 @@ class LocalArtifactApp(PythonEDA, abc.ABC):
         :param folder: The folder.
         :type folder: str
         """
-        self.__class__.local_artifact_class().initialize(folder)
+        artifact_class = self.__class__.local_artifact_class()
+        if artifact_class is not None:
+            artifact_class.initialize(folder)
 
     @classmethod
     @abc.abstractmethod
