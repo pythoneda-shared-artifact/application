@@ -20,7 +20,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 import abc
 from pythoneda.application import PythonEDA
-from pythoneda.shared.artifact import LocalArtifact
+from pythoneda.shared.artifact import Artifact
 
 
 class LocalArtifactApp(PythonEDA, abc.ABC):
@@ -42,16 +42,16 @@ class LocalArtifactApp(PythonEDA, abc.ABC):
         :param folder: The folder.
         :type folder: str
         """
-        artifact_class = self.__class__.local_artifact_class()
+        artifact_class = self.__class__.artifact_class()
         if artifact_class is not None:
             artifact_class.initialize(folder)
 
     @classmethod
     @abc.abstractmethod
-    def local_artifact_class(cls) -> type[LocalArtifact]:
+    def artifact_class(cls) -> type[Artifact]:
         """
-        Retrieves the subclass of LocalArtifact.
+        Retrieves the subclass of Artifact.
         :return: Such class.
-        :rtype: type[LocalArtifact]
+        :rtype: type[Artifact]
         """
         pass
